@@ -1,4 +1,20 @@
 body {
-    background-color: rebeccapurple;
-    color: white;
+    background-color: #1e1e1e;
+    color: #FFFFFF;
+    font-family: "roboto", sans-serif;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight: bolder;
+}
+
+.hero_text {
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.hero_subtitle {
+    font-size: 32px;
+    font-weight: bold;
 }
