@@ -1,4 +1,5 @@
 import { drawWeek } from './drawWeek';
+import { drawMap } from "./drawMap";
 
 export const drawCompare = () => {
     const content = document.querySelector('.content');
@@ -18,7 +19,7 @@ export const drawCompare = () => {
     // maps
     const data = document.createElement('div');
     data.classList.add('data');
-    data.innerHTML = `asdgvjhgsadjgvj`
+    drawMap(data);
     compare.appendChild(data);
 
 
@@ -27,4 +28,17 @@ export const drawCompare = () => {
     locationB.classList.add('location');
     drawWeek(locationB);
     compare.appendChild(locationB);
+
+
+    let map = L.map('mapA').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    let mapB = L.map('mapB').setView([51.525, -0.09], 14);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mapB);
 }
