@@ -183,6 +183,14 @@ input {
     padding: 2em;
 }
 
+.detail_view {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2em;
+}
+
 .location {
     display: flex;
     flex-direction: column;
@@ -280,6 +288,7 @@ input {
     height: 168px;
     width: 280px;
     margin-top: 10px;
+    opacity: 100%;
 }
 
 
@@ -304,6 +313,14 @@ input {
 
 
     .compare_view {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 2em;
+    }
+
+    .detail_view {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
