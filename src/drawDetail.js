@@ -1,5 +1,5 @@
 import { drawWeek } from './drawWeek';
-import { drawMap } from "./drawMap";
+import {  } from "leaflet"
 
 export const drawDetail = draw => {
     const content = document.querySelector('.content');
@@ -18,10 +18,17 @@ export const drawDetail = draw => {
     // details view
     const detail_box = document.createElement('div');
     detail_box.classList.add('detail_box');
+    detail.appendChild(detail_box);
+
+    const detail_boxes = document.createElement('div');
+    detail_boxes.classList.add('detail_boxes');
+    detail_box.appendChild(detail_boxes);
+
 
         // city stats
     const city_stats = document.createElement('div');
     city_stats.classList.add('city_stats');
+    detail_boxes.appendChild(city_stats);
 
     const city_title = document.createElement('div');
     city_title.classList.add('city_title');
@@ -74,7 +81,7 @@ export const drawDetail = draw => {
     const compare_avgLoTemp = document.createElement('div');
     compare_avgLoTemp.classList.add('compare_avg_LoTemp');
     compare_avgLoTemp.innerHTML = "Lo Temp: ";
-    compare_box.appendChild(compare_avg_LoTemp);
+    compare_box.appendChild(compare_avgLoTemp);
 
     const compare_avgHumidity = document.createElement('div');
     compare_avgHumidity.classList.add('compare_avgHumidity');
@@ -86,11 +93,63 @@ export const drawDetail = draw => {
 
 
         // hourly forecast
+    const hourly = document.createElement('div');
+    hourly.classList.add('hourly');
+    detail_boxes.appendChild(hourly);
 
+    const hourly_title = document.createElement('div');
+    hourly_title.classList.add('hourly_title');
+    hourly_title.innerHTML = "Forecast";
+    hourly.appendChild(hourly_title);
+
+    const hourly_subtitle = document.createElement('div');
+    hourly_subtitle.classList.add('hourly_subtitle');
+    hourly_subtitle.innerHTML = "Every other hour listed";
+    hourly.appendChild(hourly_subtitle);
+
+    const hourly_box = document.createElement('div');
+    hourly_box.classList.add('hourly_box');
+    hourly.appendChild(hourly_box);
+
+    for (let i = 0; i < 24; i += 2) {
+        const hourly_item = document.createElement('div');
+        hourly_item.classList.add('hourly_item');
+
+        const hourly_time = document.createElement('div');
+        hourly_time.classList.add('hourly_time');
+        hourly_time.innerHTML = "12 AM";
+        hourly_item.appendChild(hourly_time);
+
+        const hourly_status = document.createElement('div');
+        hourly_status.classList.add('hourly_status');
+        hourly_status.innerHTML = "Partly Cloudy";
+        hourly_item.appendChild(hourly_status);
+
+        const hourly_temp = document.createElement('div');
+        hourly_temp.classList.add('hourly_temp');
+        hourly_temp.innerHTML = "42.8";
+        hourly_item.appendChild(hourly_temp);
+
+        hourly_box.appendChild(hourly_item);
+    }
 
         // map area
+    const map_area = document.createElement('div');
+    map_area.classList.add('map_area');
+    detail_box.appendChild(map_area);
 
-    detail.appendChild(detail_box);
+    const map_large  = document.createElement('div');
+    map_large.classList.add('map_large');
+    map_large.setAttribute('id', 'map_large');
+    map_area.appendChild(map_large);
+
+    let map = L.map('map_large').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
 
     // next view
 }
