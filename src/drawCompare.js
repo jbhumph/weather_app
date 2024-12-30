@@ -1,7 +1,7 @@
 import { drawWeek } from './drawWeek';
 import { drawMap } from "./drawMap";
 
-export const drawCompare = () => {
+export const drawCompare = (cityA, cityB) => {
     const content = document.querySelector('.content');
     content.innerHTML = '';
 
@@ -12,7 +12,7 @@ export const drawCompare = () => {
     // location A
     const locationA = document.createElement('div');
     locationA.classList.add('location');
-    drawWeek(locationA);
+    drawWeek(locationA, cityA);
     compare.appendChild(locationA);
 
 
@@ -26,7 +26,7 @@ export const drawCompare = () => {
     // location B
     const locationB = document.createElement('div');
     locationB.classList.add('location');
-    drawWeek(locationB);
+    drawWeek(locationB, cityB);
     compare.appendChild(locationB);
 
 

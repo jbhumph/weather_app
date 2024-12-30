@@ -1,6 +1,6 @@
 import partly_cloudy from "./images/partly_cloudy_day.svg";
 
-export const drawWeek = (location) => {
+export const drawWeek = (location, city) => {
 
     for (let i = 0; i < 7; i++) {
         const box = document.createElement('div');
@@ -38,16 +38,16 @@ export const drawWeek = (location) => {
 
         const temp = document.createElement('div');
         temp.classList.add('temp');
-        temp.innerHTML = "47.3°";
+        temp.innerHTML = `${city.days[i].temp}°`;
         week_middle.appendChild(temp);
         const condition = document.createElement('div');
         condition.classList.add('condition');
-        condition.innerHTML = "Partially Cloudy";
+        condition.innerHTML = city.days[i].conditions;
         week_middle.appendChild(condition);
 
         const description = document.createElement('div');
         description.classList.add('description');
-        description.innerHTML = "Becoming cloudy in the afternoon";
+        description.innerHTML = city.days[i].description;
         week_bottom.appendChild(description);
 
 
