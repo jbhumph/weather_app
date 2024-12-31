@@ -1,6 +1,8 @@
 import partly_cloudy from "./images/partly_cloudy_day.svg";
 
 export const drawWeek = (location, city) => {
+    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     for (let i = 0; i < 7; i++) {
         const box = document.createElement('div');
@@ -29,11 +31,12 @@ export const drawWeek = (location, city) => {
 
         const weekday = document.createElement('div');
         weekday.classList.add('weekday');
-        weekday.innerHTML = "Wednesday";
+        const d = new Date(city.days[i].datetime);
+        weekday.innerHTML = weekdays[d.getUTCDay()];
         week_top.appendChild(weekday);
         const date = document.createElement('div');
         date.classList.add('display_date');
-        date.innerHTML = "November, 27 2024";
+        date.innerHTML = `${months[d.getUTCMonth()]} ${months[d.getUTCDate()]}`;
         week_top.appendChild(date);
 
         const temp = document.createElement('div');
