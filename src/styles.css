@@ -223,6 +223,18 @@ input {
     justify-content: space-between;
 }
 
+.week_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+}
+
+.icons {
+    width: 28px;
+}
+
 .weekday {
     font-weight: bold;
     font-size: 12px;

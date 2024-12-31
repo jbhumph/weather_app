@@ -19,7 +19,7 @@ export const drawCompare = (cityA, cityB) => {
     // maps
     const data = document.createElement('div');
     data.classList.add('data');
-    drawMap(data);
+    drawMap(data, cityA, cityB);
     compare.appendChild(data);
 
 

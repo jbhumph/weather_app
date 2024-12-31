@@ -1,4 +1,14 @@
 import partly_cloudy from "./images/partly_cloudy_day.svg";
+import snow from "./images/snow.svg";
+import rain from "./images/rain.svg";
+import fog from "./images/fog.svg";
+import wind from "./images/wind.svg";
+import cloud from "./images/cloud.svg";
+import partly_cloudy_day from "./images/partly_cloudy_day.svg";
+import partly_cloudy_night from "./images/partly_cloudy_night.svg";
+import clear_day from "./images/clear_day.svg";
+import clear_night from "./images/clear_night.svg";
+import error from "./images/error.svg";
 
 export const drawWeek = (location, city) => {
     const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -12,7 +22,28 @@ export const drawWeek = (location, city) => {
         week_icon.classList.add('week_icon');
         const icon = document.createElement('img');
         icon.classList.add('icons');
-        icon.src = partly_cloudy;
+        if (city.days[i].icon === "rain") {
+            icon.src = rain;
+        } else if (city.days[i].icon === "snow") {
+            icon.src = snow;
+        } else if (city.days[i].icon === "fog") {
+            icon.src = fog;
+        } else if (city.days[i].icon === "wind") {
+            icon.src = wind;
+        } else if (city.days[i].icon === "cloudy") {
+            icon.src = cloudy;
+        } else if (city.days[i].icon === "partly-cloudy-day") {
+            icon.src = partly_cloudy_day;
+        } else if (city.days[i].icon === "partly-cloudy-night") {
+            icon.src = partly_cloudy_night;
+        } else if (city.days[i].icon === "clear-day") {
+            icon.src = clear_day;
+        } else if (city.days[i].icon === "clear-night") {
+            icon.src = clear_night;
+        } else {
+            icon.src = error;
+        }
+
         week_icon.appendChild(icon);
         box.appendChild(week_icon);
 
@@ -36,7 +67,7 @@ export const drawWeek = (location, city) => {
         week_top.appendChild(weekday);
         const date = document.createElement('div');
         date.classList.add('display_date');
-        date.innerHTML = `${months[d.getUTCMonth()]} ${months[d.getUTCDate()]}`;
+        date.innerHTML = `${city.days[i].datetime}`;
         week_top.appendChild(date);
 
         const temp = document.createElement('div');
