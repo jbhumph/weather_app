@@ -44,6 +44,8 @@ async function getData(city, cityObj) {
         console.log(data);
         cityObj.resolvedAddress = data.resolvedAddress;
         cityObj.description = data.description;
+        cityObj.latitude = data.latitude;
+        cityObj.longitude = data.longitude;
         for (let i = 0; i < 7; i++) {
             cityObj.days.push({conditions: data.days[i].conditions, datetime: data.days[i].datetime, icon: data.days[i].icon, temp: data.days[i].temp, description: data.days[i].description});
         }

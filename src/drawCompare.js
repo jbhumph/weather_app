@@ -30,13 +30,13 @@ export const drawCompare = (cityA, cityB) => {
     compare.appendChild(locationB);
 
 
-    let map = L.map('mapA').setView([51.505, -0.09], 13);
+    let map = L.map('mapA').setView([cityA.latitude, cityA.longitude], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    let mapB = L.map('mapB').setView([51.525, -0.09], 14);
+    let mapB = L.map('mapB').setView([cityB.latitude, cityB.longitude], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
