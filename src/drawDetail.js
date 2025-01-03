@@ -1,7 +1,9 @@
 import { drawWeek } from './drawWeek';
 import {  } from "leaflet"
 
-export const drawDetail = draw => {
+export const drawDetail = (cityA, cityB) => {
+    let city = cityA;
+
     const content = document.querySelector('.content');
     content.innerHTML = '';
 
@@ -12,7 +14,7 @@ export const drawDetail = draw => {
     // week view
     const locationA = document.createElement('div');
     locationA.classList.add('location');
-    drawWeek(locationA);
+    drawWeek(locationA, city);
     detail.appendChild(locationA);
 
     // details view
@@ -32,12 +34,13 @@ export const drawDetail = draw => {
 
     const city_title = document.createElement('div');
     city_title.classList.add('city_title');
-    city_title.innerHTML = "New York"
+    let city_name_A = city.resolvedAddress.split(",")
+    city_title.innerHTML = city_name_A[0]
     city_stats.appendChild(city_title);
 
     const city_subtitle = document.createElement('div');
     city_subtitle.classList.add('city_subtitle');
-    city_subtitle.innerHTML = "New York,NY United States";
+    city_subtitle.innerHTML = city.resolvedAddress;
     city_stats.appendChild(city_subtitle);
 
     const city_box = document.createElement('div');
@@ -46,17 +49,17 @@ export const drawDetail = draw => {
 
     const city_maxTemp = document.createElement('div');
     city_maxTemp.classList.add('city_maxTemp');
-    city_maxTemp.innerHTML = "High Temp: ";
+    city_maxTemp.innerHTML = `<span style="font-weight: bold;">High Temp:</span>    ${city.tempmax}`;
     city_box.appendChild(city_maxTemp);
 
     const city_minTemp = document.createElement('div');
     city_minTemp.classList.add('city_minTemp');
-    city_minTemp.innerHTML = "Low temp: ";
+    city_minTemp.innerHTML = `<span style="font-weight: bold;">Low Temp:</span>    ${city.tempmin}`;
     city_box.appendChild(city_minTemp);
 
     const city_humidity = document.createElement('div');
     city_humidity.classList.add('city_humidity');
-    city_humidity.innerHTML = "Humidity: ";
+    city_humidity.innerHTML = `<span style="font-weight: bold;">Humidity:</span>    ${city.humidity}`;
     city_box.appendChild(city_humidity);
 
     const compare_box = document.createElement('div');
@@ -117,17 +120,29 @@ export const drawDetail = draw => {
 
         const hourly_time = document.createElement('div');
         hourly_time.classList.add('hourly_time');
-        hourly_time.innerHTML = "12 AM";
+        let hour;
+        let switched = "AM";
+        if (i === 0) {
+            hour = 12;
+        } else if (i > 0 && i < 14) {
+            hour = i;
+        } else if (i >= 7) {
+            hour = i - 12;
+        }
+        if (i > 10) {
+            switched = "PM";
+        }
+        hourly_time.innerHTML = `${hour}  ${switched}`;
         hourly_item.appendChild(hourly_time);
 
         const hourly_status = document.createElement('div');
         hourly_status.classList.add('hourly_status');
-        hourly_status.innerHTML = "Partly Cloudy";
+        hourly_status.innerHTML = city.hours[i].description;
         hourly_item.appendChild(hourly_status);
 
         const hourly_temp = document.createElement('div');
         hourly_temp.classList.add('hourly_temp');
-        hourly_temp.innerHTML = "42.8";
+        hourly_temp.innerHTML = city.hours[i].temp;
         hourly_item.appendChild(hourly_temp);
 
         hourly_box.appendChild(hourly_item);
@@ -143,7 +158,7 @@ export const drawDetail = draw => {
     map_large.setAttribute('id', 'map_large');
     map_area.appendChild(map_large);
 
-    let map = L.map('map_large').setView([51.505, -0.09], 13);
+    let map = L.map('map_large').setView([city.latitude, city.longitude], 11);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
