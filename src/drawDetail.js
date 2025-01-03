@@ -71,24 +71,36 @@ export const drawDetail = (cityA, cityB) => {
     compare_title.innerHTML = "City Comparison";
     compare_box.appendChild(compare_title);
 
+    let avg_avg = "NA"
+    let avg_high = "NA"
+    let avg_low = "NA"
+    let avg_humidity = "NA"
+
+    if (cityA.valid && cityB.valid) {
+        avg_avg = cityA.temp + cityB.temp / 2;
+        avg_high = cityA.tempmax + cityB.tempmax / 2;
+        avg_low = cityA.tempmin + cityB.tempmin / 2;
+        avg_humidity = cityB.humidity + cityB.humidity / 2;
+    }
+
     const compare_avgTemp = document.createElement('div');
     compare_avgTemp.classList.add('compare_avgTemp');
-    compare_avgTemp.innerHTML = "Avg Temp: ";
+    compare_avgTemp.innerHTML = `Avg Temp: ${avg_avg}`;
     compare_box.appendChild(compare_avgTemp);
 
     const compare_avgHiTemp = document.createElement('div');
     compare_avgHiTemp.classList.add('compare_avgHiTemp');
-    compare_avgHiTemp.innerHTML = "Hi Temp: ";
+    compare_avgHiTemp.innerHTML = `Hi Temp: ${avg_high}`;
     compare_box.appendChild(compare_avgHiTemp);
 
     const compare_avgLoTemp = document.createElement('div');
     compare_avgLoTemp.classList.add('compare_avg_LoTemp');
-    compare_avgLoTemp.innerHTML = "Lo Temp: ";
+    compare_avgLoTemp.innerHTML = `Lo Temp: ${avg_low}`;
     compare_box.appendChild(compare_avgLoTemp);
 
     const compare_avgHumidity = document.createElement('div');
     compare_avgHumidity.classList.add('compare_avgHumidity');
-    compare_avgHumidity.innerHTML = "Humidity: ";
+    compare_avgHumidity.innerHTML = `Humidity: ${avg_humidity}`;
     compare_box.appendChild(compare_avgHumidity);
 
 
