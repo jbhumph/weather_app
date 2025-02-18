@@ -13,9 +13,11 @@ const location_A = document.getElementById("location_A");
 const location_B = document.getElementById("location_B");
 const submit_A = document.getElementById("button_A");
 const submit_B = document.getElementById("button_B");
+let next_button = document.querySelector(".next");
 
 const hero_compare = document.getElementById("compare");
 const hero_detail = document.getElementById("detail");
+hero_compare.classList.add("chosen");
 
 let city_A = {days: [], hours: [], valid: false}
 let city_B = {days: [], hours: [], valid: false}
@@ -48,9 +50,24 @@ submit_B.addEventListener("click", () => {
     })
 })
 
+function addNextButtonListener() {
+    next_button = document.querySelector(".next");
+    if (next_button && !next_button.classList.contains("listener-added")) {
+        next_button.addEventListener("click", () => {
+            console.log("next");
+            drawDetail(city_B, city_A);
+            // Swap city_A and city_B
+            [city_A, city_B] = [city_B, city_A];
+        });
+        next_button.classList.add("listener-added");
+    }
+}
+
 hero_compare.addEventListener("click", () => {
     if (choice === "detail") {
         drawCompare(city_A, city_B);
+        hero_compare.classList.add("chosen");
+        hero_detail.classList.remove("chosen");
     }
     choice = "compare";
 })
@@ -58,6 +75,9 @@ hero_compare.addEventListener("click", () => {
 hero_detail.addEventListener("click", () => {
     if (choice === "compare") {
         drawDetail(city_A, city_B);
+        addNextButtonListener(city_A, city_B);
+        hero_compare.classList.remove("chosen");
+        hero_detail.classList.add("chosen");
     }
     choice = "detail";
 })

@@ -12,8 +12,10 @@ export const drawCompare = (cityA, cityB) => {
     // location A
     const locationA = document.createElement('div');
     locationA.classList.add('location');
-    drawWeek(locationA, cityA);
-    compare.appendChild(locationA);
+    if (cityA.valid) {
+        drawWeek(locationA, cityA);
+        compare.appendChild(locationA);
+    }
 
 
     // maps
@@ -26,19 +28,27 @@ export const drawCompare = (cityA, cityB) => {
     // location B
     const locationB = document.createElement('div');
     locationB.classList.add('location');
-    drawWeek(locationB, cityB);
-    compare.appendChild(locationB);
+    if (cityB.valid) {
+        drawWeek(locationB, cityB);
+        compare.appendChild(locationB);
+    }
 
+    console.log(cityA.latitude);
+    console.log(cityB.latitude);
 
-    let map = L.map('mapA').setView([cityA.latitude, cityA.longitude], 12);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    if (cityA.valid) {
+        let map = L.map('mapA').setView([cityA.latitude, cityA.longitude], 12);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    }
 
-    let mapB = L.map('mapB').setView([cityB.latitude, cityB.longitude], 12);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(mapB);
+    if (cityB.valid) {
+        let mapB = L.map('mapB').setView([cityB.latitude, cityB.longitude], 12);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapB);
+    }
 }

@@ -74,8 +74,15 @@ h1 {
     margin: 1.25em;
 }
 
-.hero_box:hover {
+.chosen {
     border-color: #4e53dc;
+    color: #4e53dc;
+}
+
+.hero_box:hover {
+    border-color: deeppink;
+    color: #ff1493;
+    cursor: pointer;
 }
 
 .box_icon {
@@ -143,6 +150,11 @@ input {
     width: 80px;
 }
 
+.submit:hover {
+    background-color: deeppink;
+    cursor: pointer;
+}
+
 .body {
     background-image: url("./images/weather_background.jpg");
     background-size: cover;
@@ -191,6 +203,28 @@ input {
     padding: 2em;
 }
 
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e53dc;
+    opacity: 99%;
+    width: 100%;
+    height: 4em;
+    border-radius: 1.25em;
+    font-weight: 300;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+}
+
+.next:hover {
+    cursor: pointer;
+    background-color: deeppink;
+}
+
 .location {
     display: flex;
     flex-direction: column;
@@ -203,7 +237,7 @@ input {
     justify-content: space-between;
     align-items: center;
     background-color: #1e1e1e;
-    opacity: 95%;
+    opacity: 99%;
     width: 100%;
     height: 4em;
     border-radius: 1.25em;
@@ -271,7 +305,7 @@ input {
     display: flex;
     flex-direction: column;
     background-color: #1e1e1e;
-    opacity: 95%;
+    opacity: 99%;
     width: 100%;
     height: 248px;
     border-radius: 1.25em;
@@ -311,7 +345,7 @@ input {
     justify-content: space-between;
     align-items: start;
     background-color: #1e1e1e;
-    opacity: 95%;
+    opacity: 99%;
     width: 100%;
     border-radius: 1.25em;
     font-weight: 300;
@@ -427,7 +461,7 @@ input {
     opacity: 100%;
 }
 
-@media screen and (min-width: 681px) {
+@media screen and (min-width: 954px) {
     h1 {
         font-size: 94px;
     }
@@ -487,9 +521,14 @@ input {
     .spot {
         margin: 0 0;
     }
+
+    .next {
+        width: 10%;
+        height: 28em;
+    }
 }
 
-@media screen and (min-width: 929px) {
+@media screen and (min-width: 1000px) {
     .hero_content {
         flex-direction: row;
     }

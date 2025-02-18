@@ -11,6 +11,14 @@ export const drawDetail = (cityA, cityB) => {
     detail.classList.add('detail_view');
     content.appendChild(detail);
 
+    // next view
+    const next = document.createElement('div');
+    next.classList.add('next');
+    detail.appendChild(next);
+    next.innerHTML = "Next";
+
+    
+
     // week view
     const locationA = document.createElement('div');
     locationA.classList.add('location');

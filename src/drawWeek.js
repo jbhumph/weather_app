@@ -31,7 +31,7 @@ export const drawWeek = (location, city) => {
         } else if (city.days[i].icon === "wind") {
             icon.src = wind;
         } else if (city.days[i].icon === "cloudy") {
-            icon.src = cloudy;
+            icon.src = cloud;
         } else if (city.days[i].icon === "partly-cloudy-day") {
             icon.src = partly_cloudy_day;
         } else if (city.days[i].icon === "partly-cloudy-night") {
